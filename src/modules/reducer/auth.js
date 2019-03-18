@@ -1,4 +1,4 @@
-import {FAIL, GET_USER, START, SUCCESS} from "../../utils/const";
+import {AUTH, FAIL, LOCAL_STORAGE_TOKEN_KEY, ME, START, SUCCESS} from "../../utils/const";
 
 const initialState = {
     isAuthenticated: null,
@@ -10,28 +10,52 @@ const initialState = {
 
 export default (state = initialState, action) => {
     const {type, payload} = action;
+    console.log(action);
 
     switch (type) {
-        case GET_USER + START:
+        case AUTH + START:
             return {
                 ...state,
+                isAuthenticated: null,
                 error: '',
                 loading: true
             };
 
-        case GET_USER + SUCCESS:
+        case AUTH + SUCCESS:
+            localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, payload);
             return {
                 ...state,
                 error: '',
                 loading: false,
-                user: payload
+                isAuthenticated: true,
+                token: payload
             };
 
-        case GET_USER + FAIL:
+        case AUTH + FAIL:
             return {
                 ...state,
                 loading: false,
-                user: payload
+                isAuthenticated: false,
+                error: action.errorMsg
+            };
+
+        case ME + START:
+            return {
+                ...state,
+                loadingUser: true
+            };
+        case ME + SUCCESS:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: payload,
+                loadingUser: false
+            };
+        case ME + FAIL:
+            return {
+                ...state,
+                loadingUser: false,
+                isAuthenticated: false
             };
 
         default:

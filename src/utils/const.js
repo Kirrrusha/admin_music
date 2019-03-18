@@ -1,4 +1,9 @@
-export const GET_USER = 'GET_USER';
+export const AUTH = 'AUTH';
+export const ME = 'ME';
+
+export const API = 'http://2.95.43.40:80';
+
+export const LOCAL_STORAGE_TOKEN_KEY = 'jwt';
 
 export const START = '_START';
 export const SUCCESS = '_SUCCESS';

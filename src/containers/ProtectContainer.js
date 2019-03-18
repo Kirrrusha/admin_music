@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner'
+import {me} from "../modules/actions";
 
 export const protect = WrappedComponent => {
   class AuthenticatedComponent extends React.Component {
     componentWillMount() {
-      // const { isAuthenticated, me } = this.props;
-      // if (!isAuthenticated) {
+      const { isAuthenticated, me } = this.props;
+      if (!isAuthenticated) {
         // me();
-      // }
+      }
     }
 
     render() {
@@ -29,7 +30,9 @@ export const protect = WrappedComponent => {
     loading: loadingUser
   });
 
-  const mapDispatchToProps = dispatch => ({});
+  const mapDispatchToProps = dispatch => ({
+    // me: () => dispatch(me())
+  });
 
   return connect(
     mapStateToProps,

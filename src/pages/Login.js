@@ -14,13 +14,22 @@ export class Login extends Component {
     };
 
     onSubmit = () => {
-        const {mode, login, password} = this.state;
+        const {mode, login, password, username} = this.state;
+        if (mode === AuthMode.SIGN_IN) {
+            this.props.signIn(login, password);
+        } else {
+            // this.props.signUp(login, password, username);
+        }
     };
 
     onFieldChange = (field, event) => {
+        const newState = {...this.state};
+        newState[field] = event.target.value;
+        this.setState(newState);
     };
 
     render() {
+        console.log(this.props);
         const {login, password, mode} = this.state;
         return (
             <main>

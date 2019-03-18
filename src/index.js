@@ -7,17 +7,17 @@ import {Provider} from 'react-redux';
 import store from './store';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {protect} from "./containers/ProtectContainer";
-import {Login} from "./pages/Login";
+import LoginContainer from "./containers/LoginContainer";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+    <Provider store={store}>
+        <BrowserRouter>
             <Switch>
-                <Route exact path="/login" component={Login}/>
-                <Route path="/" component={App}/>
+                <Route exact path="/login" component={LoginContainer}/>
+                <Route path="/" component={protect(App)}/>
             </Switch>
-        </Provider>
-    </BrowserRouter>,
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );
 
