@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+app:
+  jwt:
+    secret: 4SE4ECEgzweLvcDtdAhEq8rqB82XVjgV
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mymusic
+    username: mymusic
+    password: mymusic
+    hikari:
+      maximum-pool-size: 2
