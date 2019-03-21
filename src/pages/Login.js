@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {AuthMode} from '../utils/const';
 import FormInput from "../components/login/FormInput";
 import SubmitButton from "../components/login/SubmitButton";
+import {Redirect} from "react-router-dom";
 
 export class Login extends Component {
     static propTypes = {};
@@ -15,11 +16,11 @@ export class Login extends Component {
 
     onSubmit = () => {
         const {mode, login, password, username} = this.state;
-        if (mode === AuthMode.SIGN_IN) {
+        // if (mode === AuthMode.SIGN_IN) {
             this.props.signIn(login, password);
-        } else {
+        // } else {
             // this.props.signUp(login, password, username);
-        }
+        // }
     };
 
     onFieldChange = (field, event) => {
@@ -29,8 +30,12 @@ export class Login extends Component {
     };
 
     render() {
-        console.log(this.props);
         const {login, password, mode} = this.state;
+        const {isAuthenticated} = this.props;
+        if (isAuthenticated) {
+            return <Redirect to="/" />
+        }
+
         return (
             <main>
                 <div className="form">

@@ -4,13 +4,13 @@ const initialState = {
     isAuthenticated: null,
     error: '',
     loading: false,
+    token: localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY),
     user: null,
     loadingUser: true
 };
 
 export default (state = initialState, action) => {
     const {type, payload} = action;
-    console.log(action);
 
     switch (type) {
         case AUTH + START:
@@ -22,13 +22,13 @@ export default (state = initialState, action) => {
             };
 
         case AUTH + SUCCESS:
-            localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, payload);
+            localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, payload.token);
             return {
                 ...state,
                 error: '',
                 loading: false,
                 isAuthenticated: true,
-                token: payload
+                token: payload.token
             };
 
         case AUTH + FAIL:

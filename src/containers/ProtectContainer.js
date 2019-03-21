@@ -6,14 +6,16 @@ import {me} from "../modules/actions";
 
 export const protect = WrappedComponent => {
   class AuthenticatedComponent extends React.Component {
-    componentWillMount() {
+
+      componentWillMount() {
       const { isAuthenticated, me } = this.props;
       if (!isAuthenticated) {
-        // me();
+        me();
       }
     }
 
     render() {
+        console.log(this.props);
       const { isAuthenticated, loading } = this.props;
       return isAuthenticated ? (
         <WrappedComponent {...this.props} />
@@ -31,7 +33,7 @@ export const protect = WrappedComponent => {
   });
 
   const mapDispatchToProps = dispatch => ({
-    // me: () => dispatch(me())
+    me: () => dispatch(me())
   });
 
   return connect(

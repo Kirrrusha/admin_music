@@ -10,14 +10,14 @@ import {protect} from "./containers/ProtectContainer";
 import LoginContainer from "./containers/LoginContainer";
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
+    <BrowserRouter>
+        <Provider store={store}>
             <Switch>
                 <Route exact path="/login" component={LoginContainer}/>
                 <Route path="/" component={protect(App)}/>
             </Switch>
-        </BrowserRouter>
-    </Provider>,
+        </Provider>
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
