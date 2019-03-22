@@ -15,7 +15,7 @@ public class FilesDao {
     private final NamedParameterJdbcTemplate jdbc;
 
     public List<UserFile> getUserFiles(Integer userId) {
-        String sql = "SELECT * FROM files WHERE user_id = :id ORDER BY name";
+        String sql = "SELECT uuid, created_at, name FROM files WHERE user_id = :id ORDER BY name";
         return jdbc.query(sql, singletonMap("id", userId), (rs, rowNum) -> UserFile.builder()
                 .uuid(rs.getString("uuid"))
                 .filename(rs.getString("name"))

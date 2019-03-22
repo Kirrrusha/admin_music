@@ -1,5 +1,6 @@
 export const AUTH = 'AUTH';
 export const ME = 'ME';
+export const GET_TRACKS = 'GET_TRACKS';
 
 // export const API = 'http://2.95.43.40:80';
 export const API = 'http://localhost:8080';

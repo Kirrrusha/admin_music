@@ -22,13 +22,13 @@ export default (state = initialState, action) => {
             };
 
         case AUTH + SUCCESS:
-            localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, payload.token);
+            localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, payload);
             return {
                 ...state,
                 error: '',
                 loading: false,
                 isAuthenticated: true,
-                token: payload.token
+                token: payload
             };
 
         case AUTH + FAIL:

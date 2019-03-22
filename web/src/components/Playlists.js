@@ -5,7 +5,9 @@ import Textarea from 'react-textarea-autosize';
 class Playlists extends Component {
     static defaultProps = {};
 
-    static propTypes = {};
+    static propTypes = {
+        getTracks: PropTypes.func
+    };
 
     state = {
         playlist: [
@@ -17,6 +19,11 @@ class Playlists extends Component {
         ],
         selectedId: 0
     };
+
+    componentWillMount() {
+        const {getTracks} = this.props;
+        getTracks();
+    }
 
     handleSelect = (id) => {
         this.setState({selectedId: id});
@@ -52,6 +59,9 @@ class Playlists extends Component {
 
     render() {
         const {playlist, selectedId} = this.state;
+        const {tracks: {data}} = this.props
+        console.log('tracks', data);
+        if (!data) return null;
         return (
             <section className="playlist">
                 <div className="playlist-list">

@@ -1,4 +1,5 @@
 const getResponse = payload => {
+    console.log('getResponse', payload);
     return payload && payload.response;
 };
 

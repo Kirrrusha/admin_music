@@ -1,5 +1,5 @@
 import {RSAA} from "redux-api-middleware";
-import {FAIL, AUTH, ME, START, SUCCESS, API} from "../../utils/const";
+import {FAIL, AUTH, ME, START, SUCCESS, API, GET_TRACKS} from "../../utils/const";
 
 export const signIn = (login, password) => ({
     [RSAA]: {
@@ -26,3 +26,15 @@ export const me = () => ({
         ]
     }
 });
+
+export const getTracks = () => ({
+    [RSAA]: {
+        endpoint: `${API}/api/files`,
+        method: 'GET',
+        types: [
+            GET_TRACKS + START,
+            GET_TRACKS + SUCCESS,
+            GET_TRACKS + FAIL
+        ]
+    }
+})
